@@ -27,7 +27,7 @@ app.use(express.urlencoded({extended: false}))
 function passProtected(req, res, next){
   res.set('WWW-Authenticate', 'Basic realm="Simple Todo App"')
   console.log(req.headers.authorization)
-  if(req.headers.authorization == "Basic bGVhcm46bm9kZUpT"){
+  if(req.headers.authorization == "Basic bGVhcm46amF2YXNjcmlwdA=="){
     next()
   }
   else{
