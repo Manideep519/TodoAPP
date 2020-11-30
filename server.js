@@ -7,11 +7,11 @@ let db
 
 let port = process.env.PORT
 if (port == null || port == ""){
-  port = 3000
+  port = 3002
 }
 app.use(express.static('public'))
 
-let connectionString = 'mongodb+srv://app:xoUDpuf6iwZjpB1B@cluster0-g7k8f.mongodb.net/TodoApp?retryWrites=true&w=majority'
+let connectionString = 'mongodb+srv://app:6u4azEx7tsbQAYa9@cluster0-g7k8f.mongodb.net/TodoApp?retryWrites=true&w=majority'
 mongodb.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: true}, function(err, client) {
   if(err){
     console.error("error: ",err)
@@ -26,6 +26,7 @@ app.use(express.urlencoded({extended: false}))
 
 function passProtected(req, res, next){
   res.set('WWW-Authenticate', 'Basic realm="Simple Todo App"')
+  console.log(req.headers.authorization)
   if(req.headers.authorization == "Basic bGVhcm46bm9kZUpT"){
     next()
   }
