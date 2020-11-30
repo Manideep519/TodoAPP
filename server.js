@@ -24,18 +24,18 @@ mongodb.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: tr
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
-function passProtected(req, res, next){
-  res.set('WWW-Authenticate', 'Basic realm="Simple Todo App"')
-  console.log(req.headers.authorization)
-  if(req.headers.authorization == "Basic bGVhcm46amF2YXNjcmlwdA=="){
-    next()
-  }
-  else{
-    res.status(401).send("Authorization Failed")
-  }
-}
+// function passProtected(req, res, next){
+//   res.set('WWW-Authenticate', 'Basic realm="Simple Todo App"')
+//   console.log(req.headers.authorization)
+//   if(req.headers.authorization == "Basic bGVhcm46amF2YXNjcmlwdA=="){
+//     next()
+//   }
+//   else{
+//     res.status(401).send("Authorization Failed")
+//   }
+// }
 
-app.use(passProtected)
+// app.use(passProtected)
 
 app.get('/', function(req, res) {
   db.collection('items').find().toArray((err, items) => {
